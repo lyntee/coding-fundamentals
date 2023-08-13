@@ -1,7 +1,8 @@
-import { logUserOut, getThisYear, getCurrentUserIndex } from "./utilities.js";
+import { logUserOut, getThisYear, getCurrentUserIndex, PRODUCTS_URL, getSingleProduct } from "./utilities.js";
 
 const shippingListContainer = document.querySelector(".shipping-list-container");
 const loggedUsername = document.querySelector("#loggedUser");
+const loginTab = document.querySelector(".drop-btn");
 const logout = document.querySelector("#logout");
 const year = document.querySelector(".year");
 
@@ -12,13 +13,15 @@ window.addEventListener("load", () => {
     loggedUsername.textContent = JSON.parse(localStorage.getItem("loggedUser")).username;
   } 
   else {
-    loggedUsername.href = "./login.html";
+    loginTab.href = "../html/login.html";
     const dropdownContent = document.querySelector(".dropdown-content");
     dropdownContent.style.display = "none";
   }
 });
 
 let currentUserIndex = getCurrentUserIndex();
+let pdtId;
+let purchasedQty;
 
 // populate checkout cart list
 const populateShippingList = () => {
@@ -32,6 +35,8 @@ const populateShippingList = () => {
         <h3 class="order-no">Order Transaction No.: ${cartItem.orderNo}</h3>
         `;
         cartItem.items.forEach( (productItem) => {
+          pdtId = productItem.product.id;
+          console.log(productItem)
           const productCard = document.createElement("section");
           productCard.classList.add("cart-item");
           productCard.innerHTML = `
@@ -47,6 +52,7 @@ const populateShippingList = () => {
           </section>
           `;
           subtotal += Number(`${productItem.quantity}`) * Number(`${productItem.product.price}`)
+          purchasedQty = productItem.quantity;
           card.appendChild(productCard);
       });
       const totalPrice = document.createElement("h4");
@@ -61,5 +67,23 @@ const populateShippingList = () => {
   }
 }
 
+// update stock amount after confirm payment
+const updateStockAmt = async () => {
+  const product = await getSingleProduct(pdtId);
+  const options = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      stock: product.stock - Number(purchasedQty)
+    })
+  };
+  const response = await fetch(`${PRODUCTS_URL}/${pdtId}`, options);
+  const data = await response.json();
+  //  Updating a product will not update it into the server.
+  //  It will simulate a PUT/PATCH request and will return the product with modified data
+  console.log(data);
+}
+
 populateShippingList();
+updateStockAmt();
 logout.addEventListener("click", logUserOut);

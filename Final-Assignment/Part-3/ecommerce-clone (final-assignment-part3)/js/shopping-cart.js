@@ -2,6 +2,7 @@ import { logUserOut, getThisYear, getCurrentUserIndex } from "./utilities.js";
 
 const cartContainer = document.querySelector(".cart-container");
 const loggedUsername = document.querySelector("#loggedUser");
+const loginTab = document.querySelector(".drop-btn");
 const logout = document.querySelector("#logout");
 const year = document.querySelector(".year");
 
@@ -12,7 +13,7 @@ window.addEventListener("load", () => {
     loggedUsername.textContent = JSON.parse(localStorage.getItem("loggedUser")).username;
   } 
   else {
-    loggedUsername.href = "./login.html";
+    loginTab.href = "../html/login.html";
     const dropdownContent = document.querySelector(".dropdown-content");
     dropdownContent.style.display = "none";
   }
@@ -46,9 +47,9 @@ const populateCartItems = () => {
       const removeBtn = document.createElement("button");
       removeBtn.classList.add("buttons");
       removeBtn.textContent = "Remove";
-      removeBtn.addEventListener("click", () => removeItem(index));
       cartItemCard.appendChild(removeBtn);
       cartContainer.appendChild(cartItemCard);
+      removeBtn.addEventListener("click", () => removeItem(index));
     });
     const checkoutBtn = document.createElement("button");
     checkoutBtn.classList.add("checkout-btn", "buttons");

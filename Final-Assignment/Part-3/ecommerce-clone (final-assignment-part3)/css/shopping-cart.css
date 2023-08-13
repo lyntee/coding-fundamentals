@@ -57,7 +57,7 @@ a:hover {
 
 .checkout-btn {
   align-self: flex-end;
-  margin-top: 20px;
+  margin: 20px 0 20px 0;
 }
 
 @media (min-width: 820px) {
@@ -92,7 +92,7 @@ a:hover {
 @media (min-width: 1200px) {
   .page-title {
     justify-content: flex-start;
-    padding-left: 1rem;
+    padding-left: 10rem;
   }
 
   #link-to-home-page:link,

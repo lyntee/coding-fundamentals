@@ -20,7 +20,7 @@ const createNewUser = (e) => {
   let recordsOfUsers = JSON.parse(localStorage.getItem("userRecords")) || userRecords;
   const user = recordsOfUsers.find( (user) => user.username === username)
   if(Boolean(user)) {
-    alert("User exists");
+    alert("Username exists, please use another username");
     signupForm.reset();
   } else {
     const newUser = {
@@ -31,6 +31,7 @@ const createNewUser = (e) => {
     localStorage.setItem("userRecords", JSON.stringify(recordsOfUsers));
     signupForm.reset();
     usernameInput.focus();
+    alert("Sign up successful!");
   }
   // console.log("user records", userRecords);
 }

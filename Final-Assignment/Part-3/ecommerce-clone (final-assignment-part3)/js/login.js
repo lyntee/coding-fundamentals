@@ -19,21 +19,21 @@ const loginToHomepage = (e) => {
         window.location.href = "../html/index.html";
       } else {
         wrongPwCount++;
-        console.log("wrong password");
-        console.log("wrong pw count", wrongPwCount);
+        alert("wrong password");
+        // console.log("wrong pw count", wrongPwCount);
       }
     } else {
-      console.log("wrong password attempt > 3 times, Account locked", wrongPwCount);
+      alert("wrong password attempt > 3 times, Account locked", wrongPwCount);
       // disable inputs
       usernameInput.setAttribute("disabled", "");
       passwordInput.setAttribute("disabled", "");
       wrongPwCount = 0;
-      console.log("reset wrong pw count", wrongPwCount);
+      // console.log("reset wrong pw count", wrongPwCount);
       loginForm.reset();
       usernameInput.focus();
     }
   } else {
-    console.log("user does not exist");
+    alert("user does not exist");
     loginForm.reset();
     usernameInput.focus();
   }

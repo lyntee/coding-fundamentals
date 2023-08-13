@@ -4,6 +4,7 @@ const categoriesContainer = document.querySelector(".categories-conatiner");
 const pdtContainer = document.querySelector(".products-container");
 const logout = document.querySelector("#logout");
 const loggedUsername = document.querySelector("#loggedUser");
+const loginTab = document.querySelector(".drop-btn");
 const year = document.querySelector(".year");
 const searchInput = document.querySelector(".search-bar input[type='search']");
 const searchBtn = document.querySelector(".search-bar input[type='button']");
@@ -15,7 +16,7 @@ window.addEventListener("load", () => {
     loggedUsername.textContent = JSON.parse(localStorage.getItem("loggedUser")).username;
   } 
   else {
-    loggedUsername.href = "./login.html";
+    loginTab.href = "../html/login.html";
     const dropdownContent = document.querySelector(".dropdown-content");
     dropdownContent.style.display = "none";
   }
@@ -27,6 +28,7 @@ async function populateProductCards() {
   allProducts.forEach( (product) => {
     // create card
     const card = document.createElement("a");
+    // getting and store product id
     card.addEventListener("click", () => {
       localStorage.setItem("productId", product.id);
     })
@@ -124,6 +126,7 @@ async function displaySearchProducts() {
       return searchedProduct;
     }
   });
+  // reset input value after search
   searchInput.value = "";
   if (searchedProducts.length > 0) {
     pdtContainer.innerHTML = "";

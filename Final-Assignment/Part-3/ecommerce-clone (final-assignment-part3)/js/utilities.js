@@ -103,4 +103,4 @@ function getCurrentUserIndex() {
   return currentUserIndex;
 }
 
-export { userRecords, getAllProducts, getSingleProduct, logUserOut, getThisYear, getCurrentUserIndex };
+export { userRecords, getAllProducts, getSingleProduct, logUserOut, getThisYear, getCurrentUserIndex, PRODUCTS_URL };

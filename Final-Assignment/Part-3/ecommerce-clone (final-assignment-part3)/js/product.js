@@ -2,6 +2,7 @@ import { getSingleProduct, logUserOut, getThisYear } from "./utilities.js";
 
 const mainContainer = document.querySelector("main");
 const loggedUsername = document.querySelector("#loggedUser");
+const loginTab = document.querySelector(".drop-btn");
 const logout = document.querySelector("#logout");
 const year = document.querySelector(".year");
 
@@ -12,7 +13,7 @@ window.addEventListener("load", () => {
     loggedUsername.textContent = JSON.parse(localStorage.getItem("loggedUser")).username;
   }
   else {
-    loggedUsername.href = "./login.html";
+    loginTab.href = "../html/login.html";
     const dropdownContent = document.querySelector(".dropdown-content");
     dropdownContent.style.display = "none";
   }
@@ -23,7 +24,7 @@ const getProductDetails = async ()  => {
   mainContainer.innerHTML = ``;
   mainContainer.innerHTML = `
   <section class="product-image-wrapper">
-    <img src=${product.images[1]} alt="product-main-image">
+    <img src=${product.images[0]} alt="product-main-image">
   </section>
   <section class="product-details-wrapper">
     <h1 id="product-title">${product.title}</h1>

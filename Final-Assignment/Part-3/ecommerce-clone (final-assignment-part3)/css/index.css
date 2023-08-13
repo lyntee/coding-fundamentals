@@ -130,6 +130,8 @@ nav a {
 
 .categories-conatiner {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   padding: 20px 0 20px 0;
@@ -155,6 +157,8 @@ nav a {
 /* product card css */
 .products-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
   margin: 2rem 0 2rem 0;
@@ -251,10 +255,11 @@ footer .links a:hover {
 
 @media (min-width: 1200px) {
   .products-container {
-    /* justify-content: center;
-    align-items: center; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    grid-auto-flow: row;
     gap: 1rem;
   }
 }
