@@ -1,1 +1,3 @@
-### Drag and drop your files for this assignment here. 
+### E-commerce clone
+Live website: 
+Video link: https://www.youtube.com/watch?v=I8M9ZfjrzRo
